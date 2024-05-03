@@ -3,6 +3,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "./redux/jobsSlicer";
 import JobCard from "./components/JobCard/JobCard";
+import Filters from "./components/Filters/Filters";
 
 function App() {
   const dispatch = useDispatch();
@@ -58,74 +59,9 @@ function App() {
 
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          name="companyName" // Updated to include company name filter
-          value={filters.companyName}
-          onChange={handleFilterChange}
-          placeholder="Company Name" // Added placeholder
-        />
-
-        <input
-          type="text"
-          name="location"
-          value={filters.location}
-          onChange={handleFilterChange}
-          placeholder="Location"
-        />
-
-        <select
-          name="remoteOnSite"
-          value={filters.remoteOnSite}
-          onChange={handleFilterChange}
-        >
-          <option value="">Remote/On-site</option>
-          <option value="remote">Remote</option>
-          <option value="On-site">On-site</option>
-        </select>
-
-        <input
-          type="text"
-          name="role"
-          value={filters.role}
-          onChange={handleFilterChange}
-          placeholder="Role"
-        />
-
-        <select
-          name="minBasePay"
-          value={filters.minBasePay}
-          onChange={handleFilterChange}
-        >
-          <option value="">Min Base Pay</option>
-          <option value="10">{"10L"}</option>
-          <option value="20">{"20L"}</option>
-          <option value="30">{"30L"}</option>
-          <option value="40">{"40L"}</option>
-          <option value="50">{"50L"}</option>
-          <option value="60">{"60L"}</option>
-          <option value="70">{"70L"}</option>
-          <option value="80">{"80L"}</option>
-          <option value="90">{"90L"}</option>
-          <option value="100">{"100L"}</option>
-        </select>
-
-        <select
-          name="minExp"
-          value={filters.minExp}
-          onChange={handleFilterChange}
-        >
-          <option value="">Minimum Experience</option>
-          {[...Array(10)].map((_, i) => (
-            <option key={i} value={i + 1}>
-              {i + 1}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Filters filters={filters} handleFilterChange={handleFilterChange} />
       <div className="container">
-        {filteredJobs.length === 0 && (
+        {filteredJobs.length === 0 && !jobs.loading && (
           <div>No jobs found with the applied filters.</div>
         )}
         <div className="jobs-grid">
