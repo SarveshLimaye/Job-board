@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { fetchJobs } from "./redux/jobsSlicer";
 import JobCard from "./components/JobCard/JobCard";
 import Filters from "./components/Filters/Filters";
@@ -86,7 +88,11 @@ function App() {
           <div>No jobs found with the applied filters.</div>
         )}
         <div className="jobs-grid">
-          {jobs.loading && <div>Loading...</div>}
+          {jobs.loading && (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          )}
           {jobs.error && <div>Error: {jobs.error}</div>}
           {filteredJobs.map((job) => (
             <JobCard
