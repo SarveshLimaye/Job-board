@@ -1,16 +1,13 @@
+// @ts-nocheck comment\
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import { grey } from "@mui/material/colors";
-import IconButton from "@mui/material/IconButton";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 export default function JobCard({
   companyName,
@@ -51,7 +48,7 @@ export default function JobCard({
                   color="text.primary"
                   sx={{ fontSize: 15, fontWeight: 100 }}
                 >
-                  {jobRole.charAt(0).toUpperCase() + jobRole.slice(1)}
+                  {jobRole.charAt(0).toUpperCase() + jobRole.slice(1)} Engineer
                 </Typography>
               </>
             }

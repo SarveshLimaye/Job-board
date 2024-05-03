@@ -1,3 +1,4 @@
+// @ts-nocheck comment\
 import React from "react";
 import {
   Box,
@@ -27,9 +28,15 @@ export default function Filters({ filters, handleFilterChange }) {
     padding: "8px",
   };
 
+  const labelStyle = {
+    color: "#757575",
+    marginBottom: "5px",
+  };
+
   return (
     <Box style={containerStyle}>
       <FormControl>
+        <InputLabel style={labelStyle}>Company Name</InputLabel>
         <Input
           style={inputStyle}
           type="text"
@@ -41,6 +48,7 @@ export default function Filters({ filters, handleFilterChange }) {
       </FormControl>
 
       <FormControl>
+        <InputLabel style={labelStyle}>Location</InputLabel>
         <Input
           style={inputStyle}
           type="text"
@@ -51,23 +59,12 @@ export default function Filters({ filters, handleFilterChange }) {
         />
       </FormControl>
 
-      <FormControl style={{ flex: "1" }}>
-        <InputLabel>Remote/On-site</InputLabel>
+      <FormControl style={{ flex: "1", minWidth: "160px" }} variant="standard">
+        <InputLabel style={labelStyle}>Remote/On-site</InputLabel>
         <Select
           name="remoteOnSite"
           value={filters.remoteOnSite}
           onChange={handleFilterChange}
-          sx={{
-            "@media (max-width: 960px)": {
-              flex: "1 1 auto",
-              width: "100%",
-              // Adjusted minWidth for tablet-sized devices
-            },
-            "@media (max-width: 600px)": {
-              flex: "1 1 auto",
-              width: "100%", // Adjusted minWidth for mobile-sized devices
-            },
-          }}
         >
           <MenuItem value="remote">Remote</MenuItem>
           <MenuItem value="On-site">On-site</MenuItem>
@@ -75,6 +72,7 @@ export default function Filters({ filters, handleFilterChange }) {
       </FormControl>
 
       <FormControl>
+        <InputLabel style={labelStyle}>Role</InputLabel>
         <Input
           style={inputStyle}
           type="text"
@@ -85,25 +83,14 @@ export default function Filters({ filters, handleFilterChange }) {
         />
       </FormControl>
 
-      <FormControl style={{ flex: "1" }}>
-        <InputLabel>Min Base Pay</InputLabel>
+      <FormControl style={{ flex: "1", minWidth: "160px" }} variant="standard">
+        <InputLabel style={labelStyle}>Min Base Pay</InputLabel>
         <Select
           name="minBasePay"
           value={filters.minBasePay}
           onChange={handleFilterChange}
           labelId="minBasePay-label"
           id="minBasePay"
-          sx={{
-            "@media (max-width: 960px)": {
-              flex: "1 1 auto",
-              width: "100%",
-              // Adjusted minWidth for tablet-sized devices
-            },
-            "@media (max-width: 600px)": {
-              flex: "1 1 auto",
-              width: "100%", // Adjusted minWidth for mobile-sized devices
-            },
-          }}
         >
           {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((value) => (
             <MenuItem key={value} value={value}>
@@ -113,23 +100,12 @@ export default function Filters({ filters, handleFilterChange }) {
         </Select>
       </FormControl>
 
-      <FormControl style={{ flex: "1" }}>
-        <InputLabel>Minimum Experience</InputLabel>
+      <FormControl style={{ flex: "1", minWidth: "160px" }} variant="standard">
+        <InputLabel style={labelStyle}>Minimum Experience</InputLabel>
         <Select
           name="minExp"
           value={filters.minExp}
           onChange={handleFilterChange}
-          sx={{
-            "@media (max-width: 960px)": {
-              flex: "1 1 auto",
-              width: "100%",
-              // Adjusted minWidth for tablet-sized devices
-            },
-            "@media (max-width: 600px)": {
-              flex: "1 1 auto",
-              width: "100%", // Adjusted minWidth for mobile-sized devices
-            },
-          }}
         >
           {[...Array(10)].map((_, i) => (
             <MenuItem key={i} value={i + 1}>
