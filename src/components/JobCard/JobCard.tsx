@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 export default function JobCard({
+  companyName,
   location,
   minExp,
   jobDetailsFromCompany,
@@ -23,10 +24,10 @@ export default function JobCard({
               color="text.secondary"
               gutterBottom
             >
-              {jobRole}
+              {jobRole} {location && `(${location})`}
             </Typography>
             <Typography variant="h5" component="div">
-              {location}
+              {companyName}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               {jobDetailsFromCompany}
