@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "./redux/jobsSlicer";
+import JobCard from "./components/JobCard/JobCard";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,10 +21,14 @@ function App() {
       ) : jobs.data ? (
         <div className="jobs-grid">
           {jobs.data?.jdList.map((job) => (
-            <div key={job.jdUid} className="job-item">
-              <h2>{job.location}</h2>
-              <p>{job.jobDetailsFromCompany}</p>
-            </div>
+            <JobCard
+              key={job.jdUid}
+              location={job.location}
+              minExp={job.minExp}
+              jobDetailsFromCompany={job.jobDetailsFromCompany}
+              jobRole={job.jobRole}
+              jdLink={job.jdLink}
+            />
           ))}
         </div>
       ) : null}
