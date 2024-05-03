@@ -135,8 +135,11 @@ function App() {
             <JobCard
               key={job.jdUid}
               companyName={job.companyName}
+              logoUrl={job.logoUrl}
               location={job.location}
               minExp={job.minExp}
+              minJdSalary={job.minJdSalary}
+              maxJdSalary={job.maxJdSalary}
               jobDetailsFromCompany={job.jobDetailsFromCompany}
               jobRole={job.jobRole}
               jdLink={job.jdLink}
