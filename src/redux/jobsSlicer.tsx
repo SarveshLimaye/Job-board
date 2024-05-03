@@ -1,31 +1,33 @@
+// @ts-nocheck comment\
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+export const fetchJobs = createAsyncThunk(
+  "jobs/fetchJobs",
+  async ({ limit, offset }) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  const body = JSON.stringify({
-    limit: 10,
-    offset: 0,
-  });
+    const body = JSON.stringify({
+      limit,
+      offset,
+    });
 
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body,
-  };
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body,
+    };
 
-  const response = await fetch(
-    "https://api.weekday.technology/adhoc/getSampleJdJSON",
-    requestOptions
-  );
+    const response = await fetch(
+      "https://api.weekday.technology/adhoc/getSampleJdJSON",
+      requestOptions
+    );
 
-  const data = await response.json();
+    const data = await response.json();
 
-  console.log(data);
-
-  return data;
-});
+    return data;
+  }
+);
 
 const jobSlice = createSlice({
   name: "jobs",

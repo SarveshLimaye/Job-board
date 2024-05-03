@@ -1,3 +1,4 @@
+// @ts-nocheck comment\
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,10 +17,30 @@ function App() {
     minExp: "",
     companyName: "", // New filter for company name
   });
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
+    dispatch(fetchJobs({ limit, offset }));
+  }, [dispatch, limit, offset]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        window.document.body.offsetHeight - 30
+      ) {
+        setLimit((prevLimit) => prevLimit + 10);
+        console.log("End of scroll"); // Increase limit to fetch more jobs
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [limit]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
