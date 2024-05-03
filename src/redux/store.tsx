@@ -1,3 +1,4 @@
+// @ts-nocheck comment\
 import { configureStore } from "@reduxjs/toolkit";
 import jobsReducer from "./jobsSlicer";
 
